@@ -31,8 +31,12 @@ io.on("connection", (socket) => {
 
   socket.emit("welcome", "hello ges" + socket.id);
   socket.on("kirimText", (hasiltext) => {
-    console.log(hasiltext);
+    // console.log(hasiltext);
     socket.broadcast.emit("update", hasiltext);
+    io.emit("msg update", {
+      from: socket.handshake.auth.username,
+      hasiltext,
+    });
   });
 
   socket.on("disconnect", () => {

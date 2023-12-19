@@ -6,12 +6,15 @@ const socket = io("http://localhost:3000", {
 });
 export default function GroupMessage() {
   const [hasil, sethasil] = useState();
-  console.log(hasil, "hasill");
-  console.log(localStorage.getItem("username"), "username");
+  //   console.log(hasil, "hasill");
+  //   console.log(localStorage.getItem("username"), "username");
   const [Chat, setChat] = useState();
-  console.log(Chat);
+  //   console.log(Chat);
 
   const [online, setOnline] = useState([]);
+
+  const [messages, setMessages] = useState([{}]);
+  //   console.log(messages);
 
   function handleChange(e) {
     setChat(e.target.value);
@@ -30,17 +33,24 @@ export default function GroupMessage() {
     socket.auth = {
       username: localStorage.getItem("username"),
     };
-    socket.on("welcome", (message) => {
-      console.log("msg:", message);
+
+    socket.on("msg update", (msg) => {
+      setMessages((current) => {
+        return [...current, msg];
+      });
     });
 
-    socket.on("update", (hasiltext) => {
-      console.log("msg:", hasiltext);
-      sethasil(hasiltext);
+    socket.on("welcome", (message) => {
+      //   console.log("msg:", message);
     });
+
+    // socket.on("update", (hasiltext) => {
+    //   //   console.log("msg:", hasiltext);
+    //   sethasil(hasiltext);
+    // });
 
     socket.on("onlineUser", (online) => {
-      console.log(online);
+      //   console.log(online);
       setOnline(online);
     });
 
@@ -63,8 +73,17 @@ export default function GroupMessage() {
               return <p key={el.socketId}>{el.username} Online</p>;
             })}
           </div>
-          <h1>{hasil}</h1>
-          <h1>tes2</h1>
+          <ul>
+            {messages.map((el, i) => {
+              return (
+                <>
+                  <li key={(i += 1)}>
+                    from:{el.from} message:{el.hasiltext}
+                  </li>
+                </>
+              );
+            })}
+          </ul>
         </form>
       </div>
     </>
