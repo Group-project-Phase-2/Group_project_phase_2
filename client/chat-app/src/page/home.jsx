@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000");
 
 export default function Home() {
+  const navigate = useNavigate();
   const [uname, setUname] = useState({
     username: "",
   });
@@ -12,6 +14,8 @@ export default function Home() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
+      localStorage.setItem("username", uname);
+      navigate("/group");
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +39,7 @@ export default function Home() {
   return (
     <>
       <div className="container d-flex mt-5">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div class="mb-3 ">
             <label for="exampleInputEmail1" class="form-label">
               Username

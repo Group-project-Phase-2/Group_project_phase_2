@@ -5,16 +5,11 @@ const socket = io("http://localhost:3000");
 export default function GroupMessage() {
   const [hasil, sethasil] = useState();
   console.log(hasil, "hasill");
-  const [Chat, setChat] = useState({
-    input: "",
-  });
+  const [Chat, setChat] = useState();
   console.log(Chat);
 
   function handleChange(e) {
-    setChat({
-      ...Chat[0],
-      input: e.target.value,
-    });
+    setChat(e.target.value);
   }
   async function handleSubmit(e) {
     e.preventDefault();
@@ -47,7 +42,7 @@ export default function GroupMessage() {
         <form onSubmit={handleSubmit}>
           <input name="input" onChange={handleChange}></input>{" "}
           <button type="submit">submit</button>
-          <h1>{hasil.input}</h1>
+          <h1>{hasil}</h1>
           <h1>tes2</h1>
         </form>
       </div>

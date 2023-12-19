@@ -1,4 +1,8 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  redirect,
+} from "react-router-dom";
 import Home from "./page/home";
 import GroupMessage from "./page/GroupMessage";
 function App() {
@@ -10,6 +14,12 @@ function App() {
     {
       path: "/Group",
       element: <GroupMessage></GroupMessage>,
+      loader: () => {
+        if (!localStorage.username) {
+          return redirect("/");
+        }
+        return null;
+      },
     },
   ]);
   return <RouterProvider router={router} />;
