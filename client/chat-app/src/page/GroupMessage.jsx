@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3000");
+const socket = io("http://localhost:3000", {
+  autoConnect: false,
+});
 export default function GroupMessage() {
   const [hasil, sethasil] = useState();
   console.log(hasil, "hasill");
+  console.log(localStorage.getItem("username"), "username");
   const [Chat, setChat] = useState();
   console.log(Chat);
 
@@ -21,6 +24,10 @@ export default function GroupMessage() {
   }
 
   useEffect(() => {
+    socket.connect();
+    socket.auth = {
+      username: localStorage.getItem("username"),
+    };
     socket.on("welcome", (message) => {
       console.log("msg:", message);
     });
@@ -33,6 +40,7 @@ export default function GroupMessage() {
     return () => {
       socket.off("welcome");
       socket.off("update");
+      socket.disconnect();
     };
   }, []);
 

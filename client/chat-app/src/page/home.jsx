@@ -1,16 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { io } from "socket.io-client";
-
-const socket = io("http://localhost:3000");
 
 export default function Home() {
   const navigate = useNavigate();
-  const [uname, setUname] = useState({
-    username: "",
-  });
+  const [uname, setUname] = useState();
   console.log(uname);
-  //   console.log(socket);
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -22,20 +16,9 @@ export default function Home() {
   }
 
   function handleChange(e) {
-    setUname({
-      ...uname,
-      username: e.target.value,
-    });
+    setUname(e.target.value);
   }
 
-  useEffect(() => {
-    socket.on("welcome", (message) => {
-      console.log("msg:", message);
-    });
-    return () => {
-      socket.off("welcome");
-    };
-  }, []);
   return (
     <>
       <div className="container d-flex mt-5">

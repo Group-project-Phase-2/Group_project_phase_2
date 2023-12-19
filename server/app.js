@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
+  console.log("username", socket.handshake.auth);
   socket.emit("welcome", "hello ges" + socket.id);
   socket.on("kirimText", (hasiltext) => {
     console.log(hasiltext);
