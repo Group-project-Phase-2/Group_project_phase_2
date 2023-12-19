@@ -13,10 +13,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login />,
   },
-  // {
-  //   path: "/",
-  //   element: <Home />,
-  // },
+  {
+    path: "/",
+    element: <Home />,
+  },
 ]);
 
 export default router;
