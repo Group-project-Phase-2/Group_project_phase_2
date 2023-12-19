@@ -1,4 +1,13 @@
+import { io } from "socket.io-client";
+const socket = io("https://localhost:3000");
 export default function Home() {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
       <div className="container d-flex mt-5">
