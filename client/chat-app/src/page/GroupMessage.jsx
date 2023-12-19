@@ -11,6 +11,8 @@ export default function GroupMessage() {
   const [Chat, setChat] = useState();
   console.log(Chat);
 
+  const [online, setOnline] = useState([]);
+
   function handleChange(e) {
     setChat(e.target.value);
   }
@@ -37,9 +39,15 @@ export default function GroupMessage() {
       sethasil(hasiltext);
     });
 
+    socket.on("onlineUser", (online) => {
+      console.log(online);
+      setOnline(online);
+    });
+
     return () => {
       socket.off("welcome");
       socket.off("update");
+      socket.off("onlineUser");
       socket.disconnect();
     };
   }, []);
@@ -50,6 +58,11 @@ export default function GroupMessage() {
         <form onSubmit={handleSubmit}>
           <input name="input" onChange={handleChange}></input>{" "}
           <button type="submit">submit</button>
+          <div className="d-flex-col">
+            {online.map((el) => {
+              return <p>{el.username} Online</p>;
+            })}
+          </div>
           <h1>{hasil}</h1>
           <h1>tes2</h1>
         </form>

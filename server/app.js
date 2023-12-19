@@ -16,9 +16,19 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+const userOnline = [];
+
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
-  console.log("username", socket.handshake.auth);
+  console.log("username", socket.handshake.auth.username);
+
+  userOnline.push({
+    socketId: socket.id,
+    username: socket.handshake.auth.username,
+  });
+
+  io.emit("onlineUser", userOnline);
+
   socket.emit("welcome", "hello ges" + socket.id);
   socket.on("kirimText", (hasiltext) => {
     console.log(hasiltext);
