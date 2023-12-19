@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-const userOnline = [];
+let userOnline = [];
 
 io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
@@ -33,6 +33,12 @@ io.on("connection", (socket) => {
   socket.on("kirimText", (hasiltext) => {
     console.log(hasiltext);
     socket.broadcast.emit("update", hasiltext);
+  });
+
+  socket.on("disconnect", () => {
+    userOnline = userOnline.filter((el) => {
+      return el.socketId !== socket.id;
+    });
   });
 });
 

@@ -60,7 +60,7 @@ export default function GroupMessage() {
           <button type="submit">submit</button>
           <div className="d-flex-col">
             {online.map((el) => {
-              return <p>{el.username} Online</p>;
+              return <p key={el.socketId}>{el.username} Online</p>;
             })}
           </div>
           <h1>{hasil}</h1>
