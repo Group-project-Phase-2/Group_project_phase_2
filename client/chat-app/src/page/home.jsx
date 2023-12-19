@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000");
 
 export default function Home() {
+  const [uname, setUname] = useState({
+    username: "",
+  });
+  console.log(uname);
   //   console.log(socket);
   async function handleSubmit(e) {
     e.preventDefault();
@@ -13,10 +17,20 @@ export default function Home() {
     }
   }
 
+  function handleChange(e) {
+    setUname({
+      ...uname,
+      username: e.target.value,
+    });
+  }
+
   useEffect(() => {
     socket.on("welcome", (message) => {
       console.log("msg:", message);
     });
+    return () => {
+      socket.off("welcome");
+    };
   }, []);
   return (
     <>
@@ -30,8 +44,7 @@ export default function Home() {
               type="text"
               name="username"
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
+              onChange={handleChange}
             />
             <div id="emailHelp" class="form-text">
               We'll never share your email with anyone else.
