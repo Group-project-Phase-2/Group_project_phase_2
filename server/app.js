@@ -17,7 +17,8 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
+  console.log("a user connected", socket.id);
+  socket.emit("welcome", "hello ges" + socket.id);
 });
 
 server.listen(port, () => {

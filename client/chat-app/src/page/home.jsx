@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { io } from "socket.io-client";
 
 const socket = io("http://localhost:3000");
 
 export default function Home() {
-  console.log(socket);
+  //   console.log(socket);
   async function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -11,6 +12,12 @@ export default function Home() {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    socket.on("welcome", (message) => {
+      console.log("msg:", message);
+    });
+  }, []);
   return (
     <>
       <div className="container d-flex mt-5">
