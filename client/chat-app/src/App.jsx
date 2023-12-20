@@ -6,6 +6,8 @@ import {
 import "./style.scss";
 import Home from "./page/home";
 import Login from "./page/Login";
+import { store } from "./store";
+import { Provider } from "react-redux";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,7 +26,13 @@ function App() {
       element: <Login></Login>,
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </>
+  );
 }
 
 export default App;
