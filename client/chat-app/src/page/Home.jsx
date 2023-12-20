@@ -9,7 +9,7 @@ import { io } from "socket.io-client";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const socket = io("http://localhost:3000", {
+const socket = io("https://server.challange1.online", {
   autoConnect: false,
 });
 
@@ -21,21 +21,24 @@ const Home = () => {
 
   const [online, setOnline] = useState([]);
 
-  const [messages, setMessages] = useState([{}]);
-  //   console.log(messages);
+  const [messages, setMessages] = useState([]);
+  // console.log(messages);
 
   function handleChange(e) {
     setChat(e.target.value);
   }
+
   function logout(e) {
     e.preventDefault();
     localStorage.clear();
     navigate("/login");
   }
+
   async function handleSubmit(e) {
     e.preventDefault();
     try {
       socket.emit("kirimText", Chat);
+      setChat(" ");
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +80,10 @@ const Home = () => {
           <div className="navbar">
             <span className="logo">Chat Rooms</span>
             <div className="user">
-              <img alt="/" />
+              <img
+                alt="/"
+                src="https://i.pinimg.com/736x/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.jpg"
+              />
               <span>{localStorage.username}</span>
               <button onClick={logout}>logout</button>
             </div>
@@ -103,7 +109,10 @@ const Home = () => {
               return (
                 <>
                   <div className="userChat" key={el.socketId}>
-                    <img src="" alt="" />
+                    <img
+                      src="https://i.pinimg.com/736x/ff/a0/9a/ffa09aec412db3f54deadf1b3781de2a.jpg"
+                      alt=""
+                    />
                     <div className="userChatInfo">
                       <span>{el.username}</span>
                       <p>Online</p>
@@ -155,6 +164,7 @@ const Home = () => {
               <input
                 type="text"
                 onChange={handleChange}
+                value={Chat}
                 placeholder="Type something..."
               />
               <div className="send">
