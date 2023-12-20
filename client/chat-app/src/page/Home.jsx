@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
+import { setMessage } from "../features/messageSlice/messageSlice";
 
 const socket = io("http://localhost:3000", {
   autoConnect: false,
@@ -15,13 +17,20 @@ const socket = io("http://localhost:3000", {
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const message = useSelector((state) => {
+    console.log(state, "<<<< state home");
+    return state.message.list
+  })
+
 
   const [Chat, setChat] = useState();
   // console.log(Chat);
 
   const [online, setOnline] = useState([]);
 
-  const [messages, setMessages] = useState([{}]);
+  // const [messages, setMessages] = useState([]);
   //   console.log(messages);
 
   function handleChange(e) {
@@ -48,9 +57,11 @@ const Home = () => {
     };
 
     socket.on("msg update", (msg) => {
-      setMessages((current) => {
-        return [...current, msg];
-      });
+      // setMessages((current) => {
+      //   return [...current, msg];
+      // });
+      dispatch(setMessage(msg))
+      console.log(msg, "<<<< log msg");
     });
 
     socket.on("welcome", (message) => {
@@ -125,9 +136,10 @@ const Home = () => {
             </div>
           </div>
           <div className="messages">
-            {messages.map((el, i) => {
+            {message.map((el, i) => {
               return (
                 <div
+                  key={i}
                   className={`message ${
                     el.from === localStorage.username && "owner"
                   } `}
