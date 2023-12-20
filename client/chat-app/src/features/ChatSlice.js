@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  value: 0,
+  message: [],
 };
 
-export const counterSlice = createSlice({
+export const chatSlice = createSlice({
   name: "counter",
   initialState,
   reducers: {
@@ -25,6 +25,6 @@ export const counterSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount } = chatSlice.actions;
 
-export default counterSlice.reducer;
+export default chatSlice.reducer;

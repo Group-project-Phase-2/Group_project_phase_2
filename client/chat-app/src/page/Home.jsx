@@ -67,7 +67,7 @@ const Home = () => {
 
     return () => {
       socket.off("welcome");
-      socket.off("update");
+      socket.off("msg update");
       socket.off("onlineUser");
       socket.disconnect();
     };
