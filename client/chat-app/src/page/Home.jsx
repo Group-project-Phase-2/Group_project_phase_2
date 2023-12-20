@@ -77,7 +77,7 @@ const Home = () => {
           <div className="navbar">
             <span className="logo">Chat Rooms</span>
             <div className="user">
-              <img src="" alt="/" />
+              <img alt="/" />
               <span>{localStorage.username}</span>
               <button onClick={logout}>logout</button>
             </div>
@@ -133,7 +133,10 @@ const Home = () => {
                   } `}
                 >
                   <div className="messageInfo">
-                    <img src="" alt="" />
+                    <img
+                      src="https://cdn-icons-png.flaticon.com/512/266/266033.png"
+                      alt=""
+                    />
                     <span>{el.from}</span>
                   </div>
                   <ul>
@@ -147,8 +150,8 @@ const Home = () => {
               );
             })}
           </div>
-          <div className="input">
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <div className="input">
               <input
                 type="text"
                 onChange={handleChange}
@@ -162,8 +165,8 @@ const Home = () => {
                 </label>
                 <button>Send</button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
