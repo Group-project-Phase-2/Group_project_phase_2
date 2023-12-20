@@ -14,13 +14,13 @@ function App() {
       element: <Home></Home>,
       loader: () => {
         if (!localStorage.username) {
-          return redirect("/");
+          return redirect("/login");
         }
         return null;
       },
     },
     {
-      path: "/login",
+      path: "/",
       element: <Login></Login>,
     },
   ]);

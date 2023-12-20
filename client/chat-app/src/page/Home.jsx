@@ -45,7 +45,7 @@ const Home = () => {
     });
 
     socket.on("welcome", (message) => {
-      console.log("msg:", message);
+      // console.log("msg:", message);
     });
 
     socket.on("onlineUser", (online) => {
@@ -69,7 +69,7 @@ const Home = () => {
             <span className="logo">Chat Rooms</span>
             <div className="user">
               <img src="" alt="/" />
-              <span>name current user</span>
+              <span>{localStorage.username}</span>
               <button>logout</button>
             </div>
           </div>
@@ -108,7 +108,7 @@ const Home = () => {
         </div>
         <div className="chat">
           <div className="chatInfo">
-            <span>display name</span>
+            <span>Basa Basi</span>
             <div className="chatIcons">
               <img src={Cam} alt="" />
               <img src={Add} alt="" />
@@ -118,10 +118,14 @@ const Home = () => {
           <div className="messages">
             {messages.map((el, i) => {
               return (
-                <div className="message owner">
+                <div
+                  className={`message ${
+                    el.from === localStorage.username && "owner"
+                  } `}
+                >
                   <div className="messageInfo">
                     <img src="" alt="" />
-                    <span>just now</span>
+                    <span>{el.from}</span>
                   </div>
                   <ul>
                     <div className="messageContent">
@@ -133,18 +137,6 @@ const Home = () => {
                 </div>
               );
             })}
-            {/* pesan dari user lain */}
-            <div className="message">
-              <div className="messageInfo">
-                <img src="" alt="" />
-                <span>just now</span>
-              </div>
-              <div className="messageContent">
-                <p>isi pesannya</p>
-                {/* jika ada gambar pada pesan */}
-                {/* <img src="" alt="" /> */}
-              </div>
-            </div>
           </div>
           <div className="input">
             <form onSubmit={handleSubmit}>
