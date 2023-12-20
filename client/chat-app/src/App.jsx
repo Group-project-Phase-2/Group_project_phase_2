@@ -3,23 +3,25 @@ import {
   RouterProvider,
   redirect,
 } from "react-router-dom";
+import "./style.scss";
 import Home from "./page/home";
-import GroupMessage from "./page/GroupMessage";
+import Login from "./page/Login";
+
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: "/home",
       element: <Home></Home>,
-    },
-    {
-      path: "/Group",
-      element: <GroupMessage></GroupMessage>,
       loader: () => {
         if (!localStorage.username) {
           return redirect("/");
         }
         return null;
       },
+    },
+    {
+      path: "/login",
+      element: <Login></Login>,
     },
   ]);
   return <RouterProvider router={router} />;

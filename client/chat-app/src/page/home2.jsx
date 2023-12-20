@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Home() {
+export default function Home2() {
   const navigate = useNavigate();
   const [uname, setUname] = useState();
   console.log(uname);
