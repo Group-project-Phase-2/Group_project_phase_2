@@ -10,7 +10,7 @@ import Login from "./page/Login";
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/home",
+      path: "/",
       element: <Home></Home>,
       loader: () => {
         if (!localStorage.username) {
@@ -20,7 +20,7 @@ function App() {
       },
     },
     {
-      path: "/",
+      path: "/login",
       element: <Login></Login>,
     },
   ]);

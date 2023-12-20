@@ -10,7 +10,7 @@ const Login = () => {
     e.preventDefault();
     try {
       localStorage.setItem("username", uname);
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

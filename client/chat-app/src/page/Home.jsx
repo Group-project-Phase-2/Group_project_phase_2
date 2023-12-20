@@ -6,12 +6,16 @@ import Img from "../img/img.png";
 import Attach from "../img/attach.png";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const socket = io("http://localhost:3000", {
   autoConnect: false,
 });
 
 const Home = () => {
+  const navigate = useNavigate();
+
   const [Chat, setChat] = useState();
   // console.log(Chat);
 
@@ -22,6 +26,11 @@ const Home = () => {
 
   function handleChange(e) {
     setChat(e.target.value);
+  }
+  function logout(e) {
+    e.preventDefault();
+    localStorage.clear();
+    navigate("/login");
   }
   async function handleSubmit(e) {
     e.preventDefault();
@@ -70,7 +79,7 @@ const Home = () => {
             <div className="user">
               <img src="" alt="/" />
               <span>{localStorage.username}</span>
-              <button>logout</button>
+              <button onClick={logout}>logout</button>
             </div>
           </div>
           <div className="search">
