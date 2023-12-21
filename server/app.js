@@ -15,10 +15,6 @@ const io = new Server(server, {
   },
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 let userOnline = [];
 
 io.on("connection", (socket) => {
