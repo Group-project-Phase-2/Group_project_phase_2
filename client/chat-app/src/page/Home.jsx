@@ -11,6 +11,16 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../features/messageSlice/messageSlice";
 
+import img2 from "../img/avataaars.png";
+import img3 from "../img/avataaars1.png";
+import img4 from "../img/avataaars4.png";
+import img5 from "../img/avataaars5.png";
+import img6 from "../img/avataaars6.png";
+import img7 from "../img/avataaars7.png";
+import img8 from "../img/avataaars8.png";
+import img9 from "../img/avataaars9.png";
+import img0 from "../img/avataaars10.png";
+
 const socket = io("https://server.challange1.online", {
   autoConnect: false,
 });
@@ -31,6 +41,7 @@ const Home = () => {
 
   // const [messages, setMessages] = useState([]);
   //   console.log(messages);
+  const avatarside = [img2, img3, img4, img5, img6, img7, img8, img9, img0];
 
   function handleChange(e) {
     setChat(e.target.value);
@@ -107,15 +118,6 @@ const Home = () => {
               <div className="searchForm">
                 <input type="text" placeholder="Find a user" />
               </div>
-              {/* jika user tidak ada */}
-              {/* <span>User not found!</span> */}
-              {/* jika user ada */}
-              {/* <div className="userChat" onClick={handleSelect}>
-          <img src="" alt="" />
-          <div className="userChatInfo">
-            <span>user display name</span>
-          </div>
-        </div> */}
             </div>
             <div className="chats">
               {/*  */}
@@ -125,7 +127,11 @@ const Home = () => {
                   <>
                     <div className="userChat" key={el.socketId}>
                       <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI16pCEGkTZqxhUhTGzbfZoIcUYx-oR52Ulw&usqp=CAU"
+                        src={
+                          avatarside[
+                            Math.floor(Math.random() * (8 - 0 + 1)) + 0
+                          ]
+                        }
                         alt=""
                       />
                       <div className="userChatInfo">
@@ -164,8 +170,6 @@ const Home = () => {
                     <ul>
                       <div className="messageContent">
                         <p>{el.hasiltext}</p>
-                        {/* jika ada gambar pada pesan */}
-                        {/* <img src="" alt="" /> */}
                       </div>
                     </ul>
                   </div>
@@ -197,7 +201,7 @@ const Home = () => {
               <>
                 <div
                   className={`avatar${
-                    Math.floor(Math.random() * (3 - 0 + 1)) + 0
+                    Math.floor(Math.random() * (4 - 1 + 1)) + 1
                   }`}
                 >
                   <p>{el.username}</p>
@@ -213,45 +217,6 @@ const Home = () => {
               </>
             );
           })}
-
-          {/* <div className="avatar2">
-            <p>Heru</p>
-            <dotlottie-player
-              src="https://lottie.host/5af21c82-7d71-4fd1-87ff-c9e319bc5c62/g7oYsiKPTD.json"
-              background="transparent"
-              speed="1"
-              style={{ width: "100px", height: "100px" }}
-              loop
-              autoplay
-            ></dotlottie-player>
-          </div>
-          <div className="avatar3">
-            <p>Cemonk</p>
-            <dotlottie-player
-              src="https://lottie.host/83ddbff0-2706-480e-97f9-a785a4ae5afe/gSYDE8PwJQ.json"
-              background="transparent"
-              speed="1"
-              style={{ width: "100px", height: "100px" }}
-              loop
-              autoplay
-            ></dotlottie-player>
-          </div>
-          <div className="avatar4">
-            <p>Irwan</p>
-            <dotlottie-player
-              src="https://lottie.host/6465e9fa-d90d-42c1-b828-db0b3ffa1f26/vfnZdLG5jr.json"
-              background="transparent"
-              speed="1"
-              style={{
-                width: "100px",
-                height: "100px",
-                transform: "scaleX(-1)",
-              }}
-              loop
-              autoplay
-            ></dotlottie-player>
-          </div>
-        </div> */}
         </div>
       </div>
     </>
