@@ -9,7 +9,7 @@ import { io } from "socket.io-client";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const socket = io("http://localhost:3000", {
+const socket = io("https://server.challange1.online", {
   autoConnect: false,
 });
 
