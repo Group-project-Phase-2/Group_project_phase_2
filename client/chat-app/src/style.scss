@@ -322,3 +322,90 @@
     }
   }
 }
+
+
+.avatar1 {
+  position: absolute;
+  animation-name: example;
+  animation-duration: 12s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.avatar1 p {
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+
+@keyframes example {
+  0%   {left:0px; bottom:-20px;}
+  50%  {left:90vw; bottom:-20px;}
+  100% {left:0px; bottom:-20px;}
+}
+.avatar2 {
+  position: absolute;
+  animation-name: example2;
+  animation-duration: 14s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+  .avatar2 p {
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+
+@keyframes example2 {
+  0%   {left:0px; bottom:-20px;}
+  50%  {left:90vw; bottom:-20px;}
+  100% {left:0px; bottom:-20px;}
+}
+
+.avatar3 {
+  position: absolute;
+  animation-name: example3;
+  animation-duration: 16s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+  .avatar3 p {
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+
+@keyframes example3 {
+  0%   {left:0px; bottom:-20px;}
+  50%  {left:90vw; bottom:-20px;}
+  100% {left:0px; bottom:-20px;}
+}
+
+.avatar4 {
+  position: absolute;
+  animation-name: example4;
+  animation-duration: 15s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+  .avatar4 p {
+  text-align: center;
+  position: relative;
+  top: 30px;
+}
+
+@keyframes example4 {
+  0%   {left:0px; bottom:-20px;}
+  50%  {left:90vw; bottom:-20px;}
+  100% {left:0px; bottom:-20px;}
+}
+
+.avatar1 p, .avatar2 p, .avatar3 p, .avatar4 p {
+  color: white;
+}
