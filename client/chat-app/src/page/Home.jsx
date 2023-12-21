@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setMessage } from "../features/messageSlice/messageSlice";
 
-const socket = io("http://localhost:3000", {
+const socket = io("https://server.challange1.online", {
   autoConnect: false,
 });
 
@@ -95,7 +95,10 @@ const Home = () => {
             <div className="navbar">
               <span className="logo">Chat Rooms</span>
               <div className="user">
-                <img alt="/" />
+                <img
+                  alt="/"
+                  src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
+                />
                 <span>{localStorage.username}</span>
                 <button onClick={logout}>logout</button>
               </div>
@@ -121,7 +124,10 @@ const Home = () => {
                 return (
                   <>
                     <div className="userChat" key={el.socketId}>
-                      <img src="" alt="" />
+                      <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI16pCEGkTZqxhUhTGzbfZoIcUYx-oR52Ulw&usqp=CAU"
+                        alt=""
+                      />
                       <div className="userChatInfo">
                         <span>{el.username}</span>
                         <p>Online</p>
@@ -152,10 +158,7 @@ const Home = () => {
                     } `}
                   >
                     <div className="messageInfo">
-                      <img
-                        src="https://cdn-icons-png.flaticon.com/512/266/266033.png"
-                        alt=""
-                      />
+                      <img alt="" />
                       <span>{el.from}</span>
                     </div>
                     <ul>
