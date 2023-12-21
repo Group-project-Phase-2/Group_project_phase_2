@@ -60,12 +60,29 @@ const Home = () => {
     }
   }
 
+  function random1() {
+    const random03 = Math.floor(Math.random() * (3 - 0 + 1)) + 0;
+    return random03;
+  }
+
+  function random2() {
+    const random41 = Math.floor(Math.random() * (4 - 1 + 1)) + 1;
+    return random41;
+  }
+
+  function random3() {
+    const random08 = Math.floor(Math.random() * (8 - 0 + 1)) + 0;
+    return avatarside[random08];
+  }
+
   const animation = [
     "https://lottie.host/7b6200c9-a2ef-49e4-8f45-d2f630e7c509/OLD8FrvGzL.json",
     "https://lottie.host/5af21c82-7d71-4fd1-87ff-c9e319bc5c62/g7oYsiKPTD.json",
     "https://lottie.host/83ddbff0-2706-480e-97f9-a785a4ae5afe/gSYDE8PwJQ.json",
     "https://lottie.host/6465e9fa-d90d-42c1-b828-db0b3ffa1f26/vfnZdLG5jr.json",
   ];
+
+  const staticRandomValue = Math.floor(Math.random() * (8 - 0 + 1)) + 0;
 
   useEffect(() => {
     socket.connect();
@@ -98,6 +115,8 @@ const Home = () => {
     };
   }, []);
 
+  // const randomAvatar = random3();
+
   return (
     <>
       <div className="home">
@@ -126,14 +145,7 @@ const Home = () => {
                 return (
                   <>
                     <div className="userChat" key={el.socketId}>
-                      <img
-                        src={
-                          avatarside[
-                            Math.floor(Math.random() * (8 - 0 + 1)) + 0
-                          ]
-                        }
-                        alt=""
-                      />
+                      <img src={avatarside[staticRandomValue]} alt="" />
                       <div className="userChatInfo">
                         <span>{el.username}</span>
                         <p>Online</p>
@@ -164,7 +176,10 @@ const Home = () => {
                     } `}
                   >
                     <div className="messageInfo">
-                      <img alt="" />
+                      <img
+                        alt=""
+                        src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png"
+                      />
                       <span>{el.from}</span>
                     </div>
                     <ul>
